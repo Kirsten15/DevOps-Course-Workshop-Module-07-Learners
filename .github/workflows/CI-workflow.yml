@@ -10,3 +10,11 @@ jobs:
 
     - name: Build the C# code
       run: dotnet build
+
+    - name: Run the C# tests
+      run: dotnet test
+
+    - name: Build the TypeScript code
+      run: cd DotnetTemplate.Web
+      run: npm install
+      run: npm run build
