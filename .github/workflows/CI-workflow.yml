@@ -19,3 +19,9 @@ jobs:
         cd DotnetTemplate.Web
         npm install
         npm run build
+
+    - name: Run linter on the TypeScript code
+      run: npm run lint
+
+    - name: Run the TypeScript tests
+      run: npm t
