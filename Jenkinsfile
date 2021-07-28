@@ -27,11 +27,11 @@ pipeline {
                     sh 'npm run test-with-coverage'
                 }
             }
-        }
-    }
-    post {
-        always {
-            publishCoverage adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
+            post {
+                always {
+                    publishCoverage adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
+                }
+            }
         }
     }
 }
