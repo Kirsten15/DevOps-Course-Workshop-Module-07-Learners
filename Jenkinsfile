@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOTNET_CLI_HOME="/tmp/dotnet_cli_home"
     }
+
     stages {
         stage('Build and test C#') {
             agent {
@@ -23,9 +24,12 @@ pipeline {
                     sh 'npm install'
                     sh 'npm run build'
                     sh 'npm run lint'
-                    sh 'npm t'
+                    sh 'npm run test-with-coverage'
                 }
             }
         }
+    }
+    post {
+        publishCoverage adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
     }
 }
