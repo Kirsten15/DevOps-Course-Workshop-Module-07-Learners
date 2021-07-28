@@ -29,7 +29,7 @@ pipeline {
             }
             post {
                 always {
-                    publishCoverage adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
+                    publishCoverage adapters: [istanbulCoberturaAdapter(path: 'DotnetTemplate.Web/coverage/cobertura-coverage.xml', thresholds: [[failUnhealthy: true, thresholdTarget: 'Line', unhealthyThreshold: 90.0, unstableThreshold: 80.0]])], sourceFileResolver: sourceFiles('NEVER_STORE')
                 }
             }
         }
