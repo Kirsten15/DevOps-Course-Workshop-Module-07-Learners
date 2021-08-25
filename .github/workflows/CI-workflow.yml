@@ -3,7 +3,7 @@ on: [push]                      # Will make the workflow run every time you push
 
 jobs:
   build:
-    name: Build and test
+    name: Build, test, publish to Docker hub and deploy to Heroku
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
     - uses: actions/checkout@v2 # Adds a step to checkout the repository code
@@ -51,4 +51,9 @@ jobs:
   
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
-  
+    
+    - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "intense-inlet-12299"
+          heroku_email: "kirsten.faggetter@capita.co.uk"
